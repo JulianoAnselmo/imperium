@@ -255,6 +255,17 @@
       box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15);
     }
 
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+    .btn-secondary:hover {
+      background: var(--gold-subtle);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+    }
+
     .btn-whatsapp {
       background: var(--whatsapp);
       color: #fff;
@@ -606,76 +617,6 @@
       letter-spacing: 0.1em;
     }
 
-    /* ===== AUDIENCE SECTION ===== */
-    .audience {
-      padding: 120px 0;
-      background: var(--black);
-      position: relative;
-    }
-
-    .audience-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-    .audience-header .section-subtitle {
-      margin: 0 auto;
-    }
-
-    .audience-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-    }
-
-    .audience-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 36px 24px;
-      text-align: center;
-      transition: all 0.4s var(--ease-out);
-      position: relative;
-      overflow: hidden;
-    }
-    .audience-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .audience-card:hover {
-      border-color: var(--border-gold);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
-    }
-    .audience-card:hover::before { opacity: 1; }
-
-    .audience-icon {
-      width: 52px; height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      background: var(--gold-subtle);
-      border-radius: 50%;
-    }
-    .audience-icon svg {
-      width: 26px; height: 26px;
-      stroke: var(--gold);
-      stroke-width: 1.5;
-      fill: none;
-    }
-    .audience-card p {
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.6;
-    }
-
     /* ===== STYLES SECTION ===== */
     .styles {
       padding: 120px 0;
@@ -954,122 +895,82 @@
       margin-top: 2px;
     }
 
-    /* ===== CTA SECTION ===== */
-    .cta-section {
-      padding: 100px 0;
-      background: linear-gradient(135deg, #1a1510 0%, #2a2018 50%, #1a1510 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,0.08), transparent 70%);
-      pointer-events: none;
-    }
-    .cta-section::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    }
-
-    .cta-inner {
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    .cta-inner .section-title {
-      margin-bottom: 16px;
-    }
-
-    .cta-subtitle {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 40px;
-      line-height: 1.7;
-    }
-
-    /* ===== INSTAGRAM SECTION ===== */
-    .instagram-section {
+    /* ===== CATALOG PREVIEW SECTION ===== */
+    .catalog-preview {
       padding: 120px 0;
       background: var(--black);
       position: relative;
     }
 
-    .instagram-header {
-      text-align: center;
+    .catalog-preview .section-subtitle {
+      max-width: 560px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 56px;
       margin-bottom: 56px;
     }
 
-    .instagram-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .instagram-item {
-      aspect-ratio: 1;
+    .preview-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.35s var(--ease-out);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transition: all 0.4s var(--ease-out);
     }
-    .instagram-item:hover {
+    .preview-card:hover {
       border-color: var(--border-gold);
-      transform: scale(0.98);
-    }
-    .instagram-item-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      color: rgba(212,175,55,0.25);
-      transition: color 0.35s;
-    }
-    .instagram-item:hover .instagram-item-inner {
-      color: rgba(212,175,55,0.5);
-    }
-    .instagram-item-inner svg {
-      width: 40px; height: 40px;
-      stroke: currentColor;
-      stroke-width: 1;
-      fill: none;
-    }
-    .instagram-item-inner span {
-      font-family: var(--font-body);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: var(--gray);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(212, 175, 55, 0.12);
     }
 
-    .instagram-cta {
-      text-align: center;
-      margin-top: 40px;
+    .preview-card-image {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: var(--graphite);
     }
-    .instagram-handle {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-style: italic;
+    .preview-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .preview-card:hover .preview-card-image img {
+      transform: scale(1.04);
+    }
+
+    .preview-card-info {
+      padding: 18px 20px 20px;
+    }
+    .preview-card-info h3 {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .preview-card-price {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
       color: var(--gold);
-      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+
+    .preview-cta {
+      text-align: center;
     }
 
     /* ===== CONTACT SECTION ===== */
@@ -1389,12 +1290,10 @@
       .brand-stats { flex-direction: row; gap: 16px; }
       .brand-stat { flex: 1; }
 
-      .audience-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-
       .styles-grid { grid-template-columns: repeat(2, 1fr); }
       .diff-grid { grid-template-columns: repeat(2, 1fr); }
       .testimonials-grid { grid-template-columns: 1fr; }
-      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+      .preview-grid { grid-template-columns: repeat(2, 1fr); }
 
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
       .footer-top { flex-direction: column; }
@@ -1403,18 +1302,15 @@
 
     @media (max-width: 768px) {
       .brand { padding: 80px 0; }
-      .audience { padding: 80px 0; }
       .styles { padding: 80px 0; }
       .differentials { padding: 80px 0; }
       .testimonials { padding: 80px 0; }
-      .cta-section { padding: 72px 0; }
-      .instagram-section { padding: 80px 0; }
+      .catalog-preview { padding: 80px 0; }
       .contact { padding: 80px 0; }
 
-      .audience-grid { grid-template-columns: repeat(2, 1fr); }
       .styles-grid { grid-template-columns: 1fr; }
       .diff-grid { grid-template-columns: 1fr; }
-      .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+      .preview-grid { grid-template-columns: 1fr; }
 
       .brand-stats { flex-direction: column; gap: 16px; }
       .hero h1 { font-size: 2.2rem; }
@@ -1429,8 +1325,7 @@
     }
 
     @media (max-width: 480px) {
-      .audience-grid { grid-template-columns: 1fr; }
-      .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+      .preview-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1474,6 +1369,7 @@
           Fale pelo WhatsApp
         </a>
         <a href="#contato" class="btn btn-outline">Ver Localização</a>
+        <a href="catalogo.html" class="btn btn-secondary">Ver Catálogo</a>
       </div>
     </div>
     <div class="hero-scroll-hint">
@@ -1506,49 +1402,6 @@
             <div class="brand-stat-number">100%</div>
             <div class="brand-stat-label">Foco em moda masculina</div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PARA QUEM É ===== -->
-  <section class="audience" id="publico">
-    <div class="container">
-      <div class="audience-header">
-        <div class="section-label centered reveal">Para você</div>
-        <h2 class="section-title reveal reveal-delay-1">Para o homem que não abre mão de presença.</h2>
-        <div class="gold-line centered reveal reveal-delay-2"></div>
-      </div>
-      <div class="audience-grid">
-        <div class="audience-card reveal">
-          <div class="audience-icon">
-            <svg viewBox="0 0 24 24"><path d="M20 7H4C2.9 7 2 7.9 2 9v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z"/><path d="M16 7V5c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2"/></svg>
-          </div>
-          <p>Quer se vestir melhor no dia a dia sem perder o conforto</p>
-        </div>
-        <div class="audience-card reveal reveal-delay-1">
-          <div class="audience-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-          </div>
-          <p>Busca peças para trabalho, reuniões e eventos com elegância</p>
-        </div>
-        <div class="audience-card reveal reveal-delay-2">
-          <div class="audience-icon">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p>Valoriza qualidade e durabilidade em cada detalhe</p>
-        </div>
-        <div class="audience-card reveal reveal-delay-3">
-          <div class="audience-icon">
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <p>Quer elevar sua imagem pessoal e autoestima</p>
-        </div>
-        <div class="audience-card reveal reveal-delay-4">
-          <div class="audience-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-          </div>
-          <p>Procura moda masculina com bom gosto e sofisticação</p>
         </div>
       </div>
     </div>
@@ -1763,75 +1616,19 @@
     </div>
   </section>
 
-  <!-- ===== CTA INTERMEDIÁRIO ===== -->
-  <section class="cta-section">
+  <!-- ===== CATÁLOGO PREVIEW ===== -->
+  <section class="catalog-preview" id="catalogo-preview">
     <div class="container">
-      <div class="cta-inner">
-        <div class="section-label centered reveal">Converse conosco</div>
-        <h2 class="section-title reveal reveal-delay-1">Encontre a peça perfeita para o seu estilo.</h2>
-        <p class="cta-subtitle reveal reveal-delay-2">Fale com a equipe Imperium e descubra peças selecionadas para você.</p>
-        <div class="reveal reveal-delay-3">
-          <a href="https://wa.me/5516991611681?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20pe%C3%A7as%20da%20Imperium." target="_blank" rel="noopener" class="btn btn-primary" style="font-size:0.8rem;padding:18px 44px;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Chamar no WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="section-label reveal">Catálogo</div>
+      <h2 class="section-title reveal reveal-delay-1">Conheça algumas de nossas peças.</h2>
+      <p class="section-subtitle reveal reveal-delay-2">Peças selecionadas para o homem que valoriza elegância e qualidade.</p>
 
-  <!-- ===== INSTAGRAM ===== -->
-  <section class="instagram-section" id="instagram">
-    <div class="container">
-      <div class="instagram-header">
-        <div class="section-label centered reveal">Instagram</div>
-        <h2 class="section-title reveal reveal-delay-1">Acompanhe no Instagram</h2>
-        <p class="section-subtitle reveal reveal-delay-2" style="margin: 0 auto;">Novidades, looks e inspirações para o homem moderno.</p>
+      <div class="preview-grid" id="previewGrid">
+        <!-- 4 product cards rendered by JS -->
       </div>
-      <div class="instagram-grid">
-        <a href="https://www.instagram.com/imperium.modasocial" target="_blank" rel="noopener" class="instagram-item reveal">
-          <div class="instagram-item-inner">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(212,175,55,0.25)" stroke="none"/></svg>
-            <span>@imperium.modasocial</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/imperium.modasocial" target="_blank" rel="noopener" class="instagram-item reveal reveal-delay-1">
-          <div class="instagram-item-inner">
-            <svg viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
-            <span>Moda Social</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/imperium.modasocial" target="_blank" rel="noopener" class="instagram-item reveal reveal-delay-2">
-          <div class="instagram-item-inner">
-            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            <span>Ternos & Costumes</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/imperium.modasocial" target="_blank" rel="noopener" class="instagram-item reveal reveal-delay-3">
-          <div class="instagram-item-inner">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span>Qualidade Premium</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/imperium.modasocial" target="_blank" rel="noopener" class="instagram-item reveal reveal-delay-4">
-          <div class="instagram-item-inner">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Acessórios</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/imperium.modasocial" target="_blank" rel="noopener" class="instagram-item reveal reveal-delay-5">
-          <div class="instagram-item-inner">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            <span>Looks Completos</span>
-          </div>
-        </a>
-      </div>
-      <div class="instagram-cta reveal">
-        <div class="instagram-handle">@imperium.modasocial</div>
-        <a href="https://www.instagram.com/imperium.modasocial" target="_blank" rel="noopener" class="btn btn-outline">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex-shrink:0;"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-          Seguir no Instagram
-        </a>
+
+      <div class="preview-cta reveal">
+        <a href="catalogo.html" class="btn btn-primary">Ver Catálogo Completo</a>
       </div>
     </div>
   </section>
@@ -1955,6 +1752,7 @@
   </a>
 
   <!-- ===== SCRIPTS ===== -->
+  <script src="roupas.js"></script>
   <script>
     // ===== FIRESTORE CONFIG =====
     var RESTAURANT_SLUG = 'imperium-moda-social';
@@ -1989,6 +1787,56 @@
           return null;
         });
     }
+
+    // ===== CATALOG PREVIEW =====
+    function formatPrice(preco) {
+      if (!preco) return 'Sob consulta';
+      return 'R$ ' + Number(preco).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+
+    function renderPreview(products) {
+      var grid = document.getElementById('previewGrid');
+      if (!grid) return;
+      var withImages = products.filter(function(p) {
+        return p.images && p.images.length > 0 && p.images[0].url;
+      });
+      var items = withImages.slice(0, 4);
+      if (!items.length) return;
+      grid.innerHTML = items.map(function(p, i) {
+        var delay = i > 0 ? ' reveal-delay-' + i : '';
+        return '<a href="catalogo.html" class="preview-card reveal' + delay + '">' +
+          '<div class="preview-card-image">' +
+            '<img src="' + p.images[0].url + '" alt="' + p.nome + '" loading="lazy">' +
+          '</div>' +
+          '<div class="preview-card-info">' +
+            '<h3>' + p.nome + '</h3>' +
+            '<span class="preview-card-price">' + formatPrice(p.preco) + '</span>' +
+          '</div>' +
+        '</a>';
+      }).join('');
+      // Re-run reveal observer so new cards animate in
+      initReveal();
+    }
+
+    function loadPreview() {
+      if (isLocal) {
+        if (typeof roupasData !== 'undefined') renderPreview(roupasData);
+        return;
+      }
+      fetchFirestore('products')
+        .then(function(data) {
+          if (Array.isArray(data) && data.length) {
+            renderPreview(data);
+          } else {
+            throw new Error('no data');
+          }
+        })
+        .catch(function() {
+          if (typeof roupasData !== 'undefined') renderPreview(roupasData);
+        });
+    }
+
+    loadPreview();
 
     // ===== BUSINESS INFO =====
     function applyBusinessInfo(info) {
