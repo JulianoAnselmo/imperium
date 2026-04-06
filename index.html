@@ -119,6 +119,11 @@
 
     /* ===== TOP BAR ===== */
     .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1001;
       background: #0a0a0a;
       border-bottom: 1px solid var(--border);
       padding: 8px 0;
@@ -126,6 +131,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
+      transition: transform 0.3s ease;
     }
     .top-bar .container {
       display: flex;
@@ -157,15 +163,16 @@
     /* ===== HEADER ===== */
     .header {
       position: fixed;
-      top: 0;
+      top: 33px;
       left: 0;
       width: 100%;
       z-index: 1000;
       padding: 0;
-      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s, top 0.3s;
       border-bottom: 1px solid transparent;
     }
     .header.scrolled {
+      top: 0;
       background: rgba(6, 6, 6, 0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -277,7 +284,7 @@
       display: flex;
       align-items: center;
       overflow: hidden;
-      margin-top: 70px;
+      margin-top: 103px;
     }
     .hero-bg {
       position: absolute;
@@ -1299,10 +1306,7 @@
           <div class="footer-brand">Imperium</div>
           <p class="footer-brand-sub">Moda social masculina premium em Taquaritinga, SP. Elegancia e qualidade para homens que valorizam estilo.</p>
           <div class="footer-map" id="contactMap">
-            <div class="footer-map-placeholder">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>Taquaritinga, SP</span>
-            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.847!2d-48.5138!3d-21.4063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b8f8c0a0a0a0a1%3A0x1234567890abcdef!2sR.%20dos%20Domingues%2C%20534%20-%20Centro%2C%20Taquaritinga%20-%20SP%2C%2015900-023!5e0!3m2!1spt-BR!2sbr!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
 
@@ -1535,8 +1539,11 @@
       });
     }
 
+    var topBar = document.querySelector('.top-bar');
     window.addEventListener('scroll', function() {
-      header.classList.toggle('scrolled', window.pageYOffset > 60);
+      var scrolled = window.pageYOffset > 60;
+      header.classList.toggle('scrolled', scrolled);
+      if (topBar) topBar.style.transform = scrolled ? 'translateY(-100%)' : 'translateY(0)';
       updateActiveNav();
     }, { passive: true });
 
