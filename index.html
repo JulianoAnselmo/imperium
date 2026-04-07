@@ -128,13 +128,14 @@
       width: 100%;
       z-index: 1000;
       padding: 0;
-      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+      transition: background 0.5s var(--ease), backdrop-filter 0.5s, border-color 0.5s;
       border-bottom: 1px solid transparent;
+      background: transparent;
     }
     .header.scrolled {
-      background: rgba(6, 6, 6, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(6, 6, 6, 0.95);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-bottom-color: var(--border);
     }
     .header-inner {
@@ -239,97 +240,176 @@
     /* ===== HERO ===== */
     .hero {
       position: relative;
-      height: 50vh;
-      min-height: 380px;
-      max-height: 520px;
+      height: 100vh;
+      min-height: 600px;
       display: flex;
       align-items: center;
+      justify-content: center;
       overflow: hidden;
-      margin-top: 70px;
+      margin-top: 0;
     }
     .hero-bg {
       position: absolute;
-      inset: 0;
-      background: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&q=80') center/cover no-repeat;
+      inset: -20%;
+      background: url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=85') center/cover no-repeat;
       will-change: transform;
+      transition: transform 0.1s linear;
     }
     .hero-bg::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(6,6,6,0.88) 0%,
-        rgba(6,6,6,0.65) 50%,
-        rgba(6,6,6,0.35) 100%
-      );
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(6,6,6,0.3) 0%, rgba(6,6,6,0.75) 100%),
+        linear-gradient(to bottom, rgba(6,6,6,0.2) 0%, rgba(6,6,6,0.1) 40%, rgba(6,6,6,0.85) 100%);
     }
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 600px;
+      max-width: 720px;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .hero-overline {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease) 0.3s forwards;
+    }
+    .hero-divider {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease) 0.5s forwards;
     }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
       font-weight: 300;
-      line-height: 1.15;
+      line-height: 1.12;
       color: var(--text);
-      margin-bottom: 14px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: heroFadeUp 1.2s var(--ease) 0.6s forwards;
     }
     .hero h1 em {
       font-style: italic;
       color: var(--gold);
     }
     .hero-sub {
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       color: var(--text-dim);
-      line-height: 1.6;
-      margin-bottom: 28px;
-      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      animation: heroFadeUp 1.2s var(--ease) 0.85s forwards;
     }
     .hero-actions {
       display: flex;
-      gap: 14px;
+      gap: 16px;
       flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: heroFadeUp 1.2s var(--ease) 1.05s forwards;
+    }
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: heroFadeUp 1s var(--ease) 1.5s forwards;
+    }
+    .hero-scroll-indicator span {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-scroll-arrow {
+      width: 20px;
+      height: 32px;
+      border: 1px solid var(--text-muted);
+      border-radius: 10px;
+      position: relative;
+    }
+    .hero-scroll-arrow::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: scrollDot 2s ease-in-out infinite;
+    }
+    @keyframes scrollDot {
+      0%, 100% { top: 6px; opacity: 1; }
+      50% { top: 18px; opacity: 0.3; }
+    }
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .btn-gold {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 13px 30px;
+      padding: 15px 36px;
       background: var(--gold);
       color: var(--bg);
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       border-radius: 2px;
-      transition: background 0.3s, transform 0.2s;
+      transition: all 0.4s var(--ease);
     }
     .btn-gold:hover {
       background: var(--gold-light);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(197,164,126,0.3);
     }
     .btn-outline {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 13px 30px;
+      padding: 15px 36px;
       background: transparent;
       color: var(--text);
       font-size: 0.72rem;
       font-weight: 400;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       border-radius: 2px;
       border: 1px solid rgba(232,226,216,0.25);
-      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+      transition: all 0.4s var(--ease);
     }
     .btn-outline:hover {
       border-color: var(--gold);
       color: var(--gold);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(197,164,126,0.12);
     }
     .btn-outline svg {
       width: 14px;
@@ -1195,6 +1275,28 @@
     .mobile-wa-bar a:hover { background: #20bd5a; }
     .mobile-wa-bar svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
 
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger > .product-card,
+    .reveal-stagger > .trust-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    }
+    .reveal-stagger.revealed > .product-card,
+    .reveal-stagger.revealed > .trust-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ===== SCROLLBAR ===== */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
@@ -1277,14 +1379,16 @@
       body { padding-bottom: 72px; }
 
       .hero {
-        height: auto;
-        min-height: 50vh;
-        padding: 40px 0;
+        height: 100vh;
+        height: 100svh;
+        min-height: 500px;
+        padding: 0;
       }
-      .hero h1 { font-size: 1.8rem; }
+      .hero h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
       .hero-sub { font-size: 0.82rem; }
       .hero-actions { flex-direction: column; }
       .hero-actions a { text-align: center; justify-content: center; }
+      .hero-scroll-indicator { bottom: 90px; }
 
       .search-wrap { justify-content: stretch; }
       .search-input-wrap { width: 100%; }
@@ -1366,24 +1470,30 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <div class="container hero-content">
-      <h1>Moda masculina <em>premium</em><br>em Taquaritinga</h1>
-      <p class="hero-sub">Camisas, ternos, acessorios e mais. Atendimento personalizado via WhatsApp.</p>
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-content">
+      <span class="hero-overline">Taquaritinga &mdash; SP</span>
+      <span class="hero-divider"></span>
+      <h1>Elegancia que<br>define <em>presenca</em></h1>
+      <p class="hero-sub">Camisas sociais, ternos, acessorios e muito mais. Curadoria masculina com atendimento personalizado.</p>
       <div class="hero-actions">
-        <a href="#catalogo" class="btn-gold">Ver Catalogo</a>
+        <a href="#catalogo" class="btn-gold">Explorar Catalogo</a>
         <a href="https://wa.me/5516991611681?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20pe%C3%A7as%20da%20Imperium." target="_blank" rel="noopener" class="btn-outline">
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
       </div>
     </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="hero-scroll-arrow"></div>
+    </div>
   </section>
 
   <!-- ===== CATALOG SECTION ===== -->
   <section class="catalog-section" id="catalogo">
     <div class="container">
-      <div class="catalog-header">
+      <div class="catalog-header reveal">
         <h2 class="catalog-title">Catalogo</h2>
         <span class="product-count" id="productCount"></span>
       </div>
@@ -1447,7 +1557,7 @@
 
   <!-- ===== TRUST STRIP ===== -->
   <section class="trust-strip">
-    <div class="container">
+    <div class="container reveal-stagger">
       <div class="trust-item">
         <div class="trust-icon">
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -1478,8 +1588,8 @@
   <!-- ===== CONTACT SECTION ===== -->
   <section class="contact-section" id="contato">
     <div class="container">
-      <h2 class="contact-section-title">Contato</h2>
-      <div class="contact-grid">
+      <h2 class="contact-section-title reveal">Contato</h2>
+      <div class="contact-grid reveal">
         <div>
           <div class="contact-info-list">
             <div class="contact-info-item">
@@ -2117,6 +2227,57 @@
         }
       });
     });
+
+    // ===== HERO PARALLAX =====
+    var heroBg = document.getElementById('heroBg');
+    var heroSection = document.getElementById('hero');
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          var scrollY = window.pageYOffset;
+          var heroH = heroSection.offsetHeight;
+          if (scrollY < heroH) {
+            heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px) scale(1.05)';
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // ===== SCROLL REVEAL =====
+    var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.classList.add('revealed');
+          // Staggered children
+          if (el.classList.contains('reveal-stagger')) {
+            var children = el.children;
+            for (var i = 0; i < children.length; i++) {
+              children[i].style.transitionDelay = (i * 80) + 'ms';
+            }
+          }
+          revealObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el) { revealObserver.observe(el); });
+
+    // ===== HIDE SCROLL INDICATOR ON SCROLL =====
+    var scrollIndicator = document.querySelector('.hero-scroll-indicator');
+    if (scrollIndicator) {
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 100) {
+          scrollIndicator.style.opacity = '0';
+          scrollIndicator.style.transition = 'opacity 0.5s';
+        } else {
+          scrollIndicator.style.opacity = '';
+        }
+      });
+    }
   </script>
 </body>
 </html>
