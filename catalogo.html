@@ -343,12 +343,7 @@
     .product-card:hover::before {
       transform: scaleX(1);
     }
-    @keyframes cardIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .product-card-image {
-      position: relative;
       aspect-ratio: 3/4;
       overflow: hidden;
       background: #0a0a0a;
@@ -362,33 +357,60 @@
     .product-card:hover .product-card-image img {
       transform: scale(1.06);
     }
-    .product-card-wa {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 28px;
-      height: 28px;
-      background: rgba(37, 211, 102, 0.9);
-      border-radius: 50%;
-      display: flex;
+    /* Old hover-only icon removed; new pill below */
+
+    /* ===== PRODUCT CARD WA PILL (always visible) ===== */
+    .product-card-wa-pill {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: all 0.35s var(--ease);
+      gap: 5px;
+      padding: 5px 10px;
+      background: var(--whatsapp);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+      margin-top: 10px;
+      align-self: flex-start;
     }
-    .product-card:hover .product-card-wa {
-      opacity: 1;
-      transform: translateY(0);
+    .product-card-wa-pill:hover {
+      background: #20bd5a;
+      transform: translateY(-1px);
     }
-    .product-card-wa svg {
-      width: 14px;
-      height: 14px;
+    .product-card-wa-pill svg {
+      width: 11px;
+      height: 11px;
       fill: white;
+      flex-shrink: 0;
+    }
+
+    /* ===== PRODUCT BADGE ===== */
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 3;
+      padding: 3px 9px;
+      background: var(--gold);
+      color: #0a0806;
+      font-family: var(--font-body);
+      font-size: 0.52rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      pointer-events: none;
     }
 
     .product-card-info {
-      padding: 16px 16px 20px;
+      padding: 16px 16px 16px;
+      display: flex;
+      flex-direction: column;
     }
     .product-card-name {
       font-family: var(--font-display);
@@ -746,6 +768,121 @@
       50% { box-shadow: 0 4px 48px rgba(37,211,102,0.58); }
     }
 
+    /* ===== SEARCH BAR ===== */
+    .search-wrap {
+      padding: 14px 0 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .search-input-wrap {
+      position: relative;
+      width: 400px;
+      max-width: 100%;
+    }
+    .search-input-wrap svg {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: var(--text-muted);
+      stroke-width: 2;
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      border-radius: 4px;
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus {
+      border-color: var(--gold-border);
+      box-shadow: 0 0 0 2px rgba(197,164,126,0.12);
+    }
+
+    /* ===== PRICE FILTER ROW ===== */
+    .price-filter-row {
+      padding: 0 0 10px;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      flex-wrap: wrap;
+    }
+    .price-filter-row::-webkit-scrollbar { display: none; }
+
+    /* ===== MOBILE WA BAR ===== */
+    .mobile-wa-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 998;
+      padding: 10px 20px;
+      background: rgba(6,6,6,0.96);
+      border-top: 1px solid var(--gold-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .mobile-wa-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      background: var(--whatsapp);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .mobile-wa-bar a:hover { background: #20bd5a; }
+    .mobile-wa-bar svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+
+    /* ===== BLUR-UP IMAGE ===== */
+    .product-card-image {
+      position: relative;
+    }
+    .blur-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: blur(12px);
+      transform: scale(1.08);
+      transition: opacity 0.5s ease;
+    }
+    .blur-bg.loaded { opacity: 0; }
+    .product-card-image img {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .product-card-image img.img-loaded { opacity: 1; }
+
+    /* ===== STAGGER ANIMATION ===== */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .container { padding: 0 28px; }
@@ -807,6 +944,13 @@
     }
 
     @media (max-width: 768px) {
+      .mobile-wa-bar { display: block; }
+      .whatsapp-float { display: none !important; }
+      body { padding-bottom: 72px; }
+
+      .search-wrap { justify-content: stretch; }
+      .search-input-wrap { width: 100%; }
+
       .product-grid,
       .skeleton-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -904,7 +1048,19 @@
   <!-- ===== FILTER BAR ===== -->
   <div class="filter-bar">
     <div class="container">
+      <!-- Search -->
+      <div class="search-wrap">
+        <div class="search-input-wrap">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" class="search-input" id="searchInput" placeholder="Buscar produto..." autocomplete="off">
+        </div>
+      </div>
+      <!-- Category pills -->
       <div class="filter-bar-inner" id="filterBar">
+        <!-- Populated by JS -->
+      </div>
+      <!-- Price pills -->
+      <div class="price-filter-row" id="priceFilterRow">
         <!-- Populated by JS -->
       </div>
     </div>
@@ -994,6 +1150,14 @@
     </div>
   </footer>
 
+  <!-- ===== MOBILE WHATSAPP BAR ===== -->
+  <div class="mobile-wa-bar">
+    <a href="https://wa.me/5516991611681?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20pe%C3%A7as%20da%20Imperium." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Fale pelo WhatsApp
+    </a>
+  </div>
+
   <!-- ===== WHATSAPP FLUTUANTE ===== -->
   <a href="https://wa.me/5516991611681?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20as%20pe%C3%A7as%20da%20Imperium." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Fale conosco pelo WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1019,8 +1183,19 @@
       { slug: 'perfumes', label: 'Perfumes' },
     ];
 
+    var PRICE_FILTERS = [
+      { slug: 'todos-precos', label: 'Todos os preços', fn: function() { return true; } },
+      { slug: 'ate-100',      label: 'Até R$ 100',      fn: function(p) { return p.preco && p.preco < 100; } },
+      { slug: '100-300',      label: 'R$ 100 – R$ 300', fn: function(p) { return p.preco && p.preco >= 100 && p.preco <= 300; } },
+      { slug: '300-600',      label: 'R$ 300 – R$ 600', fn: function(p) { return p.preco && p.preco > 300 && p.preco <= 600; } },
+      { slug: 'acima-600',    label: 'Acima de R$ 600', fn: function(p) { return p.preco && p.preco > 600; } },
+      { slug: 'sob-consulta', label: 'Sob consulta',     fn: function(p) { return !p.preco; } },
+    ];
+
     var allProducts = [];
     var activeFilter = 'todos';
+    var activePriceFilter = 'todos-precos';
+    var searchQuery = '';
 
     // ===== FIRESTORE HELPERS =====
     function parseFirestoreValue(val) {
@@ -1064,46 +1239,53 @@
       return slug;
     }
 
+    // ===== PRICE FILTER FUNCTION =====
+    function getPriceFilterFn(slug) {
+      for (var i = 0; i < PRICE_FILTERS.length; i++) {
+        if (PRICE_FILTERS[i].slug === slug) return PRICE_FILTERS[i].fn;
+      }
+      return function() { return true; };
+    }
+
+    // ===== APPLY ALL FILTERS =====
+    function applyFilters(products) {
+      var priceFn = getPriceFilterFn(activePriceFilter);
+      var q = searchQuery.toLowerCase().trim();
+      return products.filter(function(p) {
+        var catOk = activeFilter === 'todos' || p.categoria === activeFilter;
+        var priceOk = activePriceFilter === 'todos-precos' || priceFn(p);
+        var searchOk = !q || (p.nome && p.nome.toLowerCase().indexOf(q) !== -1);
+        return catOk && priceOk && searchOk;
+      });
+    }
+
     // ===== WHATSAPP SVG =====
     var waIconSmall = '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
 
-    // ===== FILTER BAR =====
+    // ===== SCROLL TO GRID TOP =====
+    function scrollToGrid() {
+      var filterBar = document.querySelector('.filter-bar');
+      if (!filterBar) return;
+      var top = filterBar.getBoundingClientRect().bottom + window.pageYOffset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+
+    // ===== BUILD CATEGORY FILTER BAR =====
     function buildFilters(products) {
       var bar = document.getElementById('filterBar');
       if (!bar) return;
 
-      // Count per category
-      var counts = {};
-      products.forEach(function(p) {
-        if (p.categoria) {
-          counts[p.categoria] = (counts[p.categoria] || 0) + 1;
-        }
-      });
+      updateCategoryPillCounts(products);
 
-      var html = '<button class="filter-pill active" data-cat="todos">Todos <span class="pill-count">(' + products.length + ')</span></button>';
-      CATEGORIAS.forEach(function(cat) {
-        var count = counts[cat.slug] || 0;
-        if (count > 0) {
-          html += '<button class="filter-pill" data-cat="' + cat.slug + '">' + cat.label + ' <span class="pill-count">(' + count + ')</span></button>';
-        }
-      });
-      bar.innerHTML = html;
-
-      // Apply URL param
+      // Apply URL param on first build
       var params = new URLSearchParams(window.location.search);
       var catParam = params.get('cat');
       if (catParam) {
         activeFilter = catParam;
-        var pills = bar.querySelectorAll('.filter-pill');
-        pills.forEach(function(pill) {
-          pill.classList.remove('active');
-          if (pill.getAttribute('data-cat') === catParam) {
-            pill.classList.add('active');
-          }
-        });
       }
+      renderCategoryPills(products);
 
-      // Click handlers
+      // Click handler (delegated)
       bar.addEventListener('click', function(e) {
         var pill = e.target.closest('.filter-pill');
         if (!pill) return;
@@ -1111,8 +1293,7 @@
         if (cat === activeFilter) return;
 
         activeFilter = cat;
-        bar.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
-        pill.classList.add('active');
+        renderCategoryPills(products);
 
         // Update URL without reload
         var url = new URL(window.location);
@@ -1123,19 +1304,141 @@
         }
         history.replaceState(null, '', url);
 
+        scrollToGrid();
         renderProducts(allProducts);
       });
     }
 
+    // Render category pills with counts based on current price+search filter
+    function renderCategoryPills(products) {
+      var bar = document.getElementById('filterBar');
+      if (!bar) return;
+
+      // Compute counts: for each category, count products that pass price+search filter
+      var priceFn = getPriceFilterFn(activePriceFilter);
+      var q = searchQuery.toLowerCase().trim();
+      var counts = {};
+      var totalVisible = 0;
+      products.forEach(function(p) {
+        var priceOk = activePriceFilter === 'todos-precos' || priceFn(p);
+        var searchOk = !q || (p.nome && p.nome.toLowerCase().indexOf(q) !== -1);
+        if (priceOk && searchOk) {
+          totalVisible++;
+          if (p.categoria) counts[p.categoria] = (counts[p.categoria] || 0) + 1;
+        }
+      });
+
+      var html = '<button class="filter-pill' + (activeFilter === 'todos' ? ' active' : '') + '" data-cat="todos">Todos <span class="pill-count">(' + totalVisible + ')</span></button>';
+      CATEGORIAS.forEach(function(cat) {
+        var count = counts[cat.slug] || 0;
+        if (count > 0 || cat.slug === activeFilter) {
+          html += '<button class="filter-pill' + (activeFilter === cat.slug ? ' active' : '') + '" data-cat="' + cat.slug + '">' + cat.label + ' <span class="pill-count">(' + count + ')</span></button>';
+        }
+      });
+      bar.innerHTML = html;
+    }
+
+    function updateCategoryPillCounts(products) {
+      // Only called on init; live re-render handled in renderCategoryPills
+    }
+
+    // ===== BUILD PRICE FILTER ROW =====
+    function buildPriceFilters(products) {
+      var row = document.getElementById('priceFilterRow');
+      if (!row) return;
+
+      renderPricePills(products);
+
+      row.addEventListener('click', function(e) {
+        var pill = e.target.closest('.filter-pill');
+        if (!pill) return;
+        var slug = pill.getAttribute('data-price');
+        if (slug === activePriceFilter) return;
+
+        activePriceFilter = slug;
+        renderPricePills(products);
+        renderCategoryPills(products);
+
+        scrollToGrid();
+        renderProducts(allProducts);
+      });
+    }
+
+    function renderPricePills(products) {
+      var row = document.getElementById('priceFilterRow');
+      if (!row) return;
+
+      // Count products per price bucket (considering category+search filter)
+      var q = searchQuery.toLowerCase().trim();
+      var html = '';
+      PRICE_FILTERS.forEach(function(pf) {
+        var count = 0;
+        if (pf.slug !== 'todos-precos') {
+          count = products.filter(function(p) {
+            var catOk = activeFilter === 'todos' || p.categoria === activeFilter;
+            var searchOk = !q || (p.nome && p.nome.toLowerCase().indexOf(q) !== -1);
+            return catOk && searchOk && pf.fn(p);
+          }).length;
+          if (count === 0 && pf.slug !== activePriceFilter) return; // hide empty buckets
+        } else {
+          count = products.filter(function(p) {
+            var catOk = activeFilter === 'todos' || p.categoria === activeFilter;
+            var searchOk = !q || (p.nome && p.nome.toLowerCase().indexOf(q) !== -1);
+            return catOk && searchOk;
+          }).length;
+        }
+        html += '<button class="filter-pill' + (activePriceFilter === pf.slug ? ' active' : '') + '" data-price="' + pf.slug + '">' + pf.label + ' <span class="pill-count">(' + count + ')</span></button>';
+      });
+      row.innerHTML = html;
+    }
+
+    // ===== SEARCH INPUT =====
+    function initSearch(products) {
+      var input = document.getElementById('searchInput');
+      if (!input) return;
+      var debounceTimer;
+      input.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+          searchQuery = input.value;
+          renderCategoryPills(products);
+          renderPricePills(products);
+          renderProducts(allProducts);
+        }, 150);
+      });
+    }
+
     // ===== PRODUCT COUNT =====
-    function updateProductCount(filtered, total) {
+    function updateProductCount(filteredCount, total) {
       var el = document.getElementById('productCount');
       if (!el) return;
-      if (activeFilter === 'todos') {
+      var isUnfiltered = activeFilter === 'todos' && activePriceFilter === 'todos-precos' && !searchQuery.trim();
+      if (isUnfiltered) {
         el.textContent = total + (total === 1 ? ' produto' : ' produtos');
       } else {
-        el.textContent = filtered + ' de ' + total + ' produtos';
+        el.textContent = filteredCount + ' de ' + total + ' produtos';
       }
+    }
+
+    // ===== BADGE HTML =====
+    function getBadgeHtml(preco) {
+      if (!preco) return '';
+      if (preco < 100) return '<div class="product-badge">Oferta</div>';
+      if (preco >= 500) return '<div class="product-badge">Premium</div>';
+      return '';
+    }
+
+    // ===== BLUR-UP IMAGE HTML =====
+    function blurUpImgHtml(imgUrl, nome) {
+      if (!imgUrl) return '';
+      // Build low-quality URL by appending blur params if it's an Unsplash URL
+      var thumbUrl = imgUrl;
+      if (imgUrl.indexOf('unsplash.com') !== -1 || imgUrl.indexOf('images.unsplash') !== -1) {
+        var sep = imgUrl.indexOf('?') !== -1 ? '&' : '?';
+        thumbUrl = imgUrl + sep + 'w=20&q=10&blur=100';
+      }
+      return '<div class="blur-bg" style="background-image:url(\'' + thumbUrl.replace(/'/g, "\\'") + '\')"></div>' +
+        '<img src="' + imgUrl + '" alt="' + nome + '" loading="lazy" data-blur-up>';
     }
 
     // ===== RENDER PRODUCTS =====
@@ -1144,11 +1447,7 @@
       var skeleton = document.getElementById('skeletonGrid');
       if (!grid) return;
 
-      // Filter
-      var filtered = activeFilter === 'todos'
-        ? products
-        : products.filter(function(p) { return p.categoria === activeFilter; });
-
+      var filtered = applyFilters(products);
       updateProductCount(filtered.length, products.length);
 
       // Hide skeleton, show grid
@@ -1159,9 +1458,8 @@
         grid.innerHTML = '<div class="empty-state">' +
           '<svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>' +
           '<h3>Nenhum produto encontrado</h3>' +
-          '<p>Tente selecionar outra categoria ou entre em contato pelo WhatsApp.</p>' +
+          '<p>Tente ajustar os filtros ou entre em contato pelo WhatsApp.</p>' +
           '</div>';
-        // Fade in
         grid.style.opacity = '0';
         requestAnimationFrame(function() {
           grid.style.transition = 'opacity 0.35s ease';
@@ -1178,30 +1476,47 @@
           ? '<div class="product-card-price">' + priceFormatted + '</div>'
           : '<div class="product-card-price consulta">Sob consulta</div>';
 
-        html += '<div class="product-card" data-index="' + i + '" data-id="' + (p.id || '') + '" style="animation-delay:' + (i * 0.04) + 's;">' +
+        var waMsg = encodeURIComponent('Olá! Vi o produto "' + p.nome + '" no site e gostaria de mais informações.');
+        var waPill = '<a class="product-card-wa-pill" href="https://wa.me/5516991611681?text=' + waMsg + '" target="_blank" rel="noopener" onclick="event.stopPropagation();">' +
+          waIconSmall + 'WhatsApp</a>';
+
+        // Stagger: 50ms per card
+        var delay = (i * 50) + 'ms';
+
+        html += '<div class="product-card" data-index="' + i + '" data-id="' + (p.id || '') + '" style="animation-delay:' + delay + ';">' +
           '<div class="product-card-image">' +
-            (imgUrl ? '<img src="' + imgUrl + '" alt="' + p.nome + '" loading="lazy">' : '') +
-            '<div class="product-card-wa">' + waIconSmall + '</div>' +
+            getBadgeHtml(p.preco) +
+            blurUpImgHtml(imgUrl, p.nome) +
           '</div>' +
           '<div class="product-card-info">' +
             '<div class="product-card-name">' + p.nome + '</div>' +
             priceHtml +
+            waPill +
           '</div>' +
         '</div>';
       });
 
       grid.innerHTML = html;
 
-      // Fade in grid
-      grid.style.opacity = '0';
-      requestAnimationFrame(function() {
-        grid.style.transition = 'opacity 0.3s ease';
-        grid.style.opacity = '1';
+      // Blur-up: when images load, fade in and hide blur bg
+      grid.querySelectorAll('img[data-blur-up]').forEach(function(img) {
+        if (img.complete) {
+          img.classList.add('img-loaded');
+          var bg = img.previousElementSibling;
+          if (bg && bg.classList.contains('blur-bg')) bg.classList.add('loaded');
+        } else {
+          img.addEventListener('load', function() {
+            img.classList.add('img-loaded');
+            var bg = img.previousElementSibling;
+            if (bg && bg.classList.contains('blur-bg')) bg.classList.add('loaded');
+          });
+        }
       });
 
-      // Card click -> modal
+      // Card click -> modal (but not if clicking WA pill)
       grid.querySelectorAll('.product-card').forEach(function(card) {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(e) {
+          if (e.target.closest('.product-card-wa-pill')) return;
           var id = card.getAttribute('data-id');
           var product = filtered.find(function(p) { return p.id === id; });
           if (!product) {
@@ -1287,6 +1602,8 @@
       });
 
       buildFilters(allProducts);
+      buildPriceFilters(allProducts);
+      initSearch(allProducts);
       renderProducts(allProducts);
     }
 
