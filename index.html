@@ -1605,7 +1605,7 @@
     var RESTAURANT_SLUG = 'imperium-moda-social';
     var FIRESTORE_PROJECT = 'clientes-admin-a2258';
     var FIRESTORE_BASE = 'https://firestore.googleapis.com/v1/projects/' + FIRESTORE_PROJECT + '/databases/(default)/documents/restaurants/' + RESTAURANT_SLUG + '/data/';
-    var isLocal = location.protocol === 'file:';
+    var isLocal = location.protocol === 'file:' || location.hostname.indexOf('github.io') !== -1;
 
     var CATEGORIAS = [
       { slug: 'camisas-sociais', label: 'Camisas Sociais' },
